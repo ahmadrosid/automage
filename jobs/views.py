@@ -9,7 +9,7 @@ def home(request):
 
 @login_required
 def cronjob_list(request):
-    cronjobs = CronJob.objects.filter(user=request.user)
+    cronjobs = CronJob.objects.filter(user=request.user).order_by('-id')
     return render(request, 'cronjob_list.html', {'cronjobs': cronjobs})
 
 @login_required
