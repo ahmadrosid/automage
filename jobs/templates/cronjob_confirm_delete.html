@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete cronjob?{% endblock %}
+
+{% block content %}
+<div class="page page-center">
+    <div class="container container-tight py-4">
+        <div class="card card-md">
+            <div class="card-body">
+                <h2 class="mb-3">Are you sure to delete this job?</h2>
+                <p class="text-secondary mb-4">
+                    If you want to continue you can not revert back this action.
+                </p>
+                <div class="mt-4 d-flex" style="gap: .5rem;">
+                    <a href="{% url 'cronjob_list' %}" class="btn btn-primary w-100">
+                        Cancel
+                    </a>
+                    <form method="post" class="w-100">
+                        {% csrf_token %}
+                
+                        <button class="btn btn-danger w-100">
+                            Continue
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Job list{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="row align-items-center">
+        <div class="col">
+            <div class="page-pretitle">
+                Overview
+            </div>
+            <h2 class="page-title">
+                List Cronjobs
+            </h2>
+        </div>
+        <div class="col-auto ms-auto">
+            <div class="btn-list">
+                <a href="{% url 'cronjob_create' %}" class="btn btn-primary d-none d-sm-inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <line x1="12" y1="5" x2="12" y2="19" />
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                    </svg>
+                    Add cronjob
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if cronjobs|length == 0 %}
+<div class="page-body">
+    <div class="container-xl d-flex flex-column justify-content-center">
+        <div class="empty">
+            <div class="empty-img"><img src="./static/illustrations/undraw_printing_invoices_5r4r.svg" height="128"
+                    alt="">
+            </div>
+            <p class="empty-title">No cronjob yet.</p>
+            <p class="empty-subtitle text-secondary">
+                Create your first cron jobs first.
+            </p>
+            <div class="empty-action">
+                <a href="{% url 'cronjob_create' %}" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
+                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M12 5l0 14"></path>
+                        <path d="M5 12l14 0"></path>
+                    </svg>
+                    Create cronjobs
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+
+<div class="hr-text">Jobs</div>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Jobs</h3>
+    </div>
+    <div class="list-group list-group-flush list-group-hoverable">
+        {% for cronjob in cronjobs %}
+        <div class="list-group-item">
+            <div class="row align-items-center">
+                <div class="col text-truncate">
+                    <a href="#" class="text-reset d-block">{{ cronjob.name }}</a>
+                    <div class="d-block text-secondary text-truncate mt-n1">{{ cronjob.schedule }} - {{ cronjob.command }}</div>
+                </div>
+                <div class="col-auto d-flex">
+                    <a href="#" class="btn btn-ghost-secondary mx-2">
+                        View logs
+                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="btn dropdown-toggle" data-bs-toggle="dropdown">
+                            More
+                        </a>
+                        <div class="dropdown-menu">
+                            <span class="dropdown-header">Action</span>
+                            <a href="#" class="dropdown-item">
+                                Run
+                            </a>
+                            <a href="{% url 'cronjob_edit' cronjob.pk %}" class="dropdown-item">
+                                Edit
+                            </a>
+                            <a href="{% url 'cronjob_delete' cronjob.pk %}" class="dropdown-item">
+                                Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
