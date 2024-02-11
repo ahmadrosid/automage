@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import CronJob, CronJobLog
 
-# Register your models here.
+admin.site.register(CronJob)
+admin.site.register(CronJobLog)
