@@ -3,5 +3,33 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>Hello world!</h1>
+
+<style>
+    .hero-title {
+        font-size: 58px;
+        line-height: 58px;
+        font-weight: 800;
+        letter-spacing: -.02em;
+    }
+    .hero-description {
+        font-size: 18px;
+        line-height: 28px;
+        margin: 0 auto;
+        max-width: 40rem;
+    }
+</style>
+
+<div class="text-center my-6">
+    <div style="max-width: 900px;" class="mx-auto">
+        <h1 class="hero-title">Effortless Cron Job Scheduling and Monitoring</h1>
+        <p class="hero-description">Say goodbye to the hassle of managing servers and infrastructure. With [Your Product Name], scheduling and monitoring cron jobs has never been easier.</p>
+    
+        <a href="{% url 'login' %}">
+            <button class="btn btn-primary mt-4">
+                Get Started for Free
+            </button>
+        </a>
+    </div>
+</div>
+
 {% endblock %}
