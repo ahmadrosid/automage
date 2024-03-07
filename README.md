@@ -2,4 +2,4 @@
 
 Cronjobs scheduler with django.
 
-![demo](./example.png)
+![demo](./demo.png)
