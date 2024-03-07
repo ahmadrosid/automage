@@ -15,6 +15,8 @@ from jobs import tasks
 
 logger = logging.getLogger(__name__)
 
+print(__name__)
+
 
 # The `close_old_connections` decorator ensures that database connections, that have become
 # unusable or are obsolete, are closed before and after your job has run. You should use it
@@ -73,9 +75,8 @@ class Command(BaseCommand):
       max_instances=1,
       replace_existing=True,
     )
-    logger.info(
-      "Added weekly job: 'delete_old_job_executions'."
-    )
+
+    logger.info("Added weekly job: 'delete_old_job_executions'.")
 
     try:
       logger.info("Starting scheduler...")
