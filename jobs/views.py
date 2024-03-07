@@ -1,29 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-from django_celery_beat.models import PeriodicTask, IntervalSchedule
-
 from .forms import CronJobForm
 from .models import CronJob
+from .scheduler import add_to_scheduler
 
 def home(request):
     return render(request, 'home.html')
 
 @login_required
 def cronjob_list(request):
-
-    interval, _ = IntervalSchedule.objects.get_or_create(
-        every=30,
-        period=IntervalSchedule.SECONDS,
-    )
-
-    PeriodicTask.objects.create(
-        interval=interval,
-        name="my-schedule",
-        task="jobs.tasks.execute_job",
-        args=[1]
-    )
-
     cronjobs = CronJob.objects.filter(user=request.user).order_by('-id')
     return render(request, 'cronjob_list.html', {'cronjobs': cronjobs})
 
@@ -35,6 +21,7 @@ def cronjob_create(request):
             cronjob = form.save(commit=False)
             cronjob.user = request.user
             cronjob.save()
+            add_to_scheduler(cronjob)
             return redirect('cronjob_list')
         return redirect('/')
     else:

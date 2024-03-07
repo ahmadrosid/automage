@@ -22,7 +22,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_apscheduler',
     'jobs',
     'django_celery_beat',
     'django_celery_results',
@@ -163,17 +162,7 @@ LOGIN_URL = '/login'
 LOGIN_REDIRECT_URL = '/jobs'
 LOGOUT_REDIRECT_URL = '/'
 
-
-# Scheduler settings
-APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
-APSCHEDULER_RUN_NOW_TIMEOUT = 25
-SCHEDULER_CONFIG = {
-    'apscheduler.executors.processpool': {
-        "type": "threadpool"
-    },
-}
-SCHEDULER_AUTOSTART = True
-
+# Schedulers
 CELERY_BROKER_URL = "redis://localhost:6379"
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_RESULT_EXTENDED = True

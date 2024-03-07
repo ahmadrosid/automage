@@ -8,16 +8,17 @@ Cronjobs scheduler with django.
 
 ```bash
 python manage.py migrate
-python manage.py migrate django_apscheduler
-python manage.py migrate jobs
 ```
 
 ## Run scheduler
+
+Run celery worker.
 
 ```bash
 celery -A automage worker -l INFO
 ```
 
+Run celery beat scheduler
 ```bash
 celery -A automage beat --scheduler django_celery_beat.schedulers:DatabaseScheduler
 ```
