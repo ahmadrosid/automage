@@ -35,13 +35,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'later.urls'
+ROOT_URLCONF = 'automage.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, "later/templates"),
+            os.path.join(BASE_DIR, "automage/templates"),
             os.path.join(BASE_DIR, "jobs/templates"),
         ],
         'APP_DIRS': True,
@@ -56,7 +56,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'later.wsgi.application'
+WSGI_APPLICATION = 'automage.wsgi.application'
 
 
 # Database
@@ -106,7 +106,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'later/static')
+    os.path.join(BASE_DIR, 'automage/static')
 ]
 
 # Default primary key field type
