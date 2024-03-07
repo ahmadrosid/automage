@@ -7,6 +7,7 @@ Cronjobs scheduler with django.
 ## Run Migrations
 
 ```bash
+python manage.py migrate
 python manage.py migrate django_apscheduler
 python manage.py migrate jobs
 ```

@@ -11,7 +11,7 @@ from django_apscheduler.models import DjangoJobExecution, DjangoJob
 from django_apscheduler import util
 
 from jobs.models import CronJob
-from jobs import schedules
+from jobs import tasks
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +50,7 @@ class Command(BaseCommand):
 
     jobs = CronJob.objects.all()
     for job in jobs:
-      job_function = getattr(schedules, 'write_file')
+      job_function = getattr(tasks, 'execute_job')
       job_id = "job-{}".format(job.id)
       if get_job(job_id):
         delete_job(job_id)

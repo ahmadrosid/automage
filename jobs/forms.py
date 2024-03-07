@@ -4,7 +4,7 @@ from .models import CronJob
 class CronJobForm(forms.ModelForm):
     class Meta:
         model = CronJob
-        fields = ['name', 'command', 'schedule']
+        fields = ['name', 'url', 'schedule']
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
