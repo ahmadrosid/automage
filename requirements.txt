@@ -16,7 +16,6 @@ django-celery==3.1.17
 django-celery-beat==2.6.0
 django-celery-results==2.5.1
 django-timezone-field==6.1.0
-dramatiq==1.16.0
 exceptiongroup==1.2.0
 Flask==3.0.2
 h11==0.14.0
