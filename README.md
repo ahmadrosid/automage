@@ -2,7 +2,7 @@
 
 Cronjobs scheduler with django.
 
-![demo](./demo.png)
+![demo](./screenshot.png)
 
 ## Run Migrations
 
