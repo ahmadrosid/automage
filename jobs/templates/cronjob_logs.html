@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Job list{% endblock %}
+
+{% block content %}
+
+<div class="mb-6">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Cron Job Info</h3>
+        </div>
+        <div class="card-body">
+            <div class="datagrid">
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Name</div>
+                    <div class="datagrid-content">{{cronjob.name}}</div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">URL</div>
+                    <div class="datagrid-content">{{cronjob.url}}</div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Cron Expression</div>
+                    <div class="datagrid-content">{{cronjob.schedule}}</div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Cron Description</div>
+                    <div class="datagrid-content">{{cron_description}}</div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Total Run</div>
+                    <div class="datagrid-content">{{total_run}}</div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Last Run</div>
+                    <div class="datagrid-content">{{ last_run.execution_time }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>Logs</h2>
+
+{% for log in logs %}
+
+<div class="card my-2">
+    <div class="card-header">
+        <div>
+            <h3 class="card-title">{{log.execution_time}}</h3>
+            <p class="card-subtitle">
+                {{cronjob.url}}
+            </p>
+        </div>
+    </div>
+    <div class="card-body">
+        <pre>{{log.output}}</pre>
+    </div>
+</div>
+
+{% endfor %}
+
+{% endblock %}

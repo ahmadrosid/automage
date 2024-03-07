@@ -22,3 +22,15 @@ def add_to_scheduler(cron: CronJob):
         task="jobs.tasks.execute_job",
         args=[cron.id]
     )
+
+def delete_scheduler(cron: CronJob):
+    job = PeriodicTask.objects.filter(
+        name="job-{}".format(cron.id),
+    )
+
+    if job.exists():
+        job.delete()
+
+def update_scheduler(cron: CronJob):
+    delete_scheduler(cron)
+    add_to_scheduler(cron)
